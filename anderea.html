@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nosotros 💕</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --rose: #c0556a;
+    --blush: #f2d0d8;
+    --cream: #fdf6f0;
+    --dark: #2b1a1f;
+    --gold: #c9a96e;
+  }
+
+  body {
+    background-color: var(--cream);
+    color: var(--dark);
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── Floating petals ── */
+  .petals { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+  .petal {
+    position: absolute;
+    top: -40px;
+    font-size: 1.2rem;
+    opacity: 0.35;
+    animation: fall linear infinite;
+  }
+  @keyframes fall {
+    to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+  }
+
+  /* ── Hero ── */
+  .hero {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 60px 24px 40px;
+    background: linear-gradient(160deg, #fde8ee 0%, var(--cream) 60%);
+    border-bottom: 1px solid var(--blush);
+  }
+  .hero-eyebrow {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    font-size: 0.7rem;
+    color: var(--rose);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 8vw, 4rem);
+    color: var(--dark);
+    line-height: 1.1;
+  }
+  .hero h1 span { color: var(--rose); font-style: italic; }
+  .hero-sub {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: #9a7a83;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── Counter grid ── */
+  .counter-section {
+    position: relative; z-index: 1;
+    padding: 48px 24px;
+    text-align: center;
+  }
+  .counter-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--rose);
+    letter-spacing: 0.12em;
+    margin-bottom: 28px;
+    font-style: italic;
+  }
+  .counter-grid {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    max-width: 480px;
+    margin: 0 auto 20px;
+  }
+  .counter-box {
+    background: #fff;
+    border: 1px solid var(--blush);
+    border-radius: 16px;
+    padding: 20px 18px 14px;
+    min-width: 80px;
+    box-shadow: 0 4px 20px rgba(192,85,106,0.08);
+    transition: transform 0.2s;
+  }
+  .counter-box:hover { transform: translateY(-4px); }
+  .counter-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    color: var(--rose);
+    line-height: 1;
+    display: block;
+  }
+  .counter-unit {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #b09aa0;
+    margin-top: 6px;
+    display: block;
+  }
+  .together-badge {
+    display: inline-block;
+    margin-top: 18px;
+    background: var(--rose);
+    color: #fff;
+    border-radius: 50px;
+    padding: 8px 22px;
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* ── Divider ── */
+  .divider {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.1rem;
+    letter-spacing: 0.5em;
+    padding: 4px 0;
+    position: relative; z-index: 1;
+  }
+
+  /* ── Countdown ── */
+  .countdown-section {
+    position: relative; z-index: 1;
+    background: var(--dark);
+    color: #fff;
+    padding: 48px 24px;
+    text-align: center;
+    margin: 32px 20px;
+    border-radius: 28px;
+    overflow: hidden;
+  }
+  .countdown-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 0%, #c0556a33 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 100%, #c9a96e22 0%, transparent 50%);
+  }
+  .countdown-section * { position: relative; z-index: 1; }
+  .cd-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .cd-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 5vw, 2rem);
+    margin-bottom: 6px;
+  }
+  .cd-date { font-size: 0.78rem; color: #c0a0a8; margin-bottom: 32px; }
+  .cd-grid {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .cd-box {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px;
+    padding: 20px 16px 14px;
+    min-width: 76px;
+    backdrop-filter: blur(6px);
+  }
+  .cd-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+  }
+  .cd-unit {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #8a7078;
+    margin-top: 6px;
+    display: block;
+  }
+
+  /* ── Timeline ── */
+  .timeline-section {
+    position: relative; z-index: 1;
+    padding: 48px 24px 64px;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  .section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    text-align: center;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+  .section-heading span { color: var(--rose); font-style: italic; }
+  .section-sub {
+    text-align: center;
+    font-size: 0.78rem;
+    color: #9a7a83;
+    letter-spacing: 0.1em;
+    margin-bottom: 40px;
+  }
+  .timeline {
+    position: relative;
+    padding-left: 32px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--blush), var(--rose), var(--blush));
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 36px;
+    animation: fadeUp 0.6s both;
+  }
+  .tl-item:nth-child(1) { animation-delay: 0.1s; }
+  .tl-item:nth-child(2) { animation-delay: 0.2s; }
+  .tl-item:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .tl-dot {
+    position: absolute;
+    left: -27px;
+    top: 4px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--rose);
+    border: 3px solid var(--cream);
+    box-shadow: 0 0 0 2px var(--rose);
+  }
+  .tl-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 18px 20px;
+    border: 1px solid var(--blush);
+    box-shadow: 0 4px 18px rgba(192,85,106,0.07);
+  }
+  .tl-date {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .tl-event {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--dark);
+  }
+  .tl-emoji { font-size: 1.3rem; margin-right: 6px; }
+  .tl-note {
+    font-size: 0.78rem;
+    color: #9a7a83;
+    margin-top: 4px;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    position: relative; z-index: 1;
+    text-align: center;
+    padding: 24px;
+    font-size: 0.75rem;
+    color: #c0a0a8;
+    letter-spacing: 0.15em;
+  }
+  .heart-beat { display: inline-block; animation: beat 1.2s ease infinite; }
+  @keyframes beat {
+    0%,100% { transform: scale(1); }
+    50%      { transform: scale(1.3); }
+  }
+</style>
+</head>
+<body>
+
+<!-- Petals -->
+<div class="petals" id="petals"></div>
+
+<!-- Hero -->
+<section class="hero">
+  <p class="hero-eyebrow">✦ nuestra historia ✦</p>
+  <h1>Para ti,<br><span>Andrea</span></h1>
+  <p class="hero-sub">cada día contigo es mi favorito</p>
+</section>
+
+<!-- Tiempo juntos -->
+<section class="counter-section">
+  <p class="counter-label">llevamos juntos…</p>
+  <div class="counter-grid" id="together-grid">
+    <div class="counter-box"><span class="counter-num" id="t-days">0</span><span class="counter-unit">días</span></div>
+    <div class="counter-box"><span class="counter-num" id="t-hours">0</span><span class="counter-unit">horas</span></div>
+    <div class="counter-box"><span class="counter-num" id="t-min">0</span><span class="counter-unit">minutos</span></div>
+    <div class="counter-box"><span class="counter-num" id="t-sec">0</span><span class="counter-unit">segundos</span></div>
+  </div>
+  <span class="together-badge">desde el 15 · noviembre · 2025</span>
+</section>
+
+<div class="divider">· · ♡ · ·</div>
+
+<!-- Cuenta regresiva -->
+<div class="countdown-section">
+  <p class="cd-eyebrow">✦ cuenta regresiva ✦</p>
+  <h2 class="cd-title">Nuestro Primer Aniversario 🥂</h2>
+  <p class="cd-date">15 de noviembre de 2026</p>
+  <div class="cd-grid">
+    <div class="cd-box"><span class="cd-num" id="c-days">0</span><span class="cd-unit">días</span></div>
+    <div class="cd-box"><span class="cd-num" id="c-hours">0</span><span class="cd-unit">horas</span></div>
+    <div class="cd-box"><span class="cd-num" id="c-min">0</span><span class="cd-unit">minutos</span></div>
+    <div class="cd-box"><span class="cd-num" id="c-sec">0</span><span class="cd-unit">segundos</span></div>
+  </div>
+</div>
+
+<!-- Línea de tiempo -->
+<section class="timeline-section">
+  <h2 class="section-heading">Nuestra <span>historia</span></h2>
+  <p class="section-sub">los momentos que nos hicieron nosotros</p>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <p class="tl-date">15 · noviembre · 2025</p>
+        <p class="tl-event"><span class="tl-emoji">💑</span>Comenzamos nuestra relación</p>
+        <p class="tl-note">el día que todo empezó ✨</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <p class="tl-date">22 · noviembre · 2025</p>
+        <p class="tl-event"><span class="tl-emoji">💋</span>Nuestro primer beso</p>
+        <p class="tl-note">un momento que no olvidaré jamás</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot" style="background:var(--gold); box-shadow: 0 0 0 2px var(--gold);"></div>
+      <div class="tl-card" style="border-color: #f0dfc0; background: #fffdf7;">
+        <p class="tl-date" style="color: var(--rose);">15 · noviembre · 2026</p>
+        <p class="tl-event"><span class="tl-emoji">🥂</span>Nuestro primer aniversario</p>
+        <p class="tl-note">muy pronto… ¡ya viene! 🎉</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<div class="footer">
+  hecho con <span class="heart-beat">♡</span> solo para ti, Andrea
+</div>
+
+<script>
+  // ── Petals ──
+  const petalDiv = document.getElementById('petals');
+  const symbols = ['🌸','🌷','✿','❀','♡','🌺'];
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('span');
+    p.className = 'petal';
+    p.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.fontSize = (0.8 + Math.random() * 1) + 'rem';
+    p.style.animationDuration = (8 + Math.random() * 14) + 's';
+    p.style.animationDelay = (Math.random() * 12) + 's';
+    petalDiv.appendChild(p);
+  }
+
+  // ── Dates ──
+  const START   = new Date('2025-11-15T00:00:00');
+  const ANNIV   = new Date('2026-11-15T00:00:00');
+
+  function pad(n) { return String(n).padStart(2,'0'); }
+
+  function tick() {
+    const now = new Date();
+
+    // Together
+    let diff = now - START;
+    const tDays  = Math.floor(diff / 86400000);
+    diff -= tDays * 86400000;
+    const tHours = Math.floor(diff / 3600000);
+    diff -= tHours * 3600000;
+    const tMin   = Math.floor(diff / 60000);
+    const tSec   = Math.floor((diff % 60000) / 1000);
+    document.getElementById('t-days').textContent  = tDays;
+    document.getElementById('t-hours').textContent = pad(tHours);
+    document.getElementById('t-min').textContent   = pad(tMin);
+    document.getElementById('t-sec').textContent   = pad(tSec);
+
+    // Countdown
+    let left = ANNIV - now;
+    if (left < 0) left = 0;
+    const cDays  = Math.floor(left / 86400000);
+    left -= cDays * 86400000;
+    const cHours = Math.floor(left / 3600000);
+    left -= cHours * 3600000;
+    const cMin   = Math.floor(left / 60000);
+    const cSec   = Math.floor((left % 60000) / 1000);
+    document.getElementById('c-days').textContent  = cDays;
+    document.getElementById('c-hours').textContent = pad(cHours);
+    document.getElementById('c-min').textContent   = pad(cMin);
+    document.getElementById('c-sec').textContent   = pad(cSec);
+  }
+
+  tick();
+  setInterval(tick, 1000);
+</script>
+</body>
+</html>
